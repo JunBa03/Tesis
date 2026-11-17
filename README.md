@@ -51,15 +51,29 @@ Se usa CheXpert-v1.0-small (Stanford AIMI), disponible con su acuerdo de uso en
 en el repositorio. Por defecto se buscan en `../data/raw/CheXpert-v1.0-small/`; la ruta
 se cambia en `data.root` de `configs/base.yaml`.
 
-Los modelos entrenados (`models/*.pt`) tampoco se versionan por su tamaño.
+## Prueba rápida (Windows)
 
-## Instalación
+1. Descargar el repositorio (**Code → Download ZIP**) y descomprimirlo.
+2. Ejecutar `instalar.bat` una sola vez. Crea el entorno, instala las dependencias y
+   descarga los siete modelos entrenados (unos 160 MB) desde la sección
+   [Releases](https://github.com/JunBa03/Tesis/releases) del repositorio.
+3. Ejecutar `iniciar.bat`. La aplicación se abre en el navegador.
+4. En **Análisis**, cargar una radiografía de tórax frontal en JPG, PNG o DICOM.
 
-En Windows, `instalar.bat` crea el entorno virtual e instala las dependencias para usar
-la aplicación (PyTorch para CPU), e `iniciar.bat` la abre en el navegador. Los modelos
-entrenados se copian en `models/`.
+Requiere Python 3.10 o superior y conexión a internet durante la instalación. No necesita
+placa de video; en una computadora sin GPU el análisis de un estudio tarda unos segundos.
 
-Instalación manual, también para entrenar:
+Las imágenes de CheXpert no se incluyen porque su acuerdo de uso no permite
+redistribuirlas, pero no hacen falta: sirve cualquier radiografía de tórax frontal. El
+asistente conversacional es opcional y requiere una clave propia (ver más abajo); sin ella
+la aplicación funciona igual.
+
+Los modelos publicados se entrenaron con CheXpert y se ofrecen solo para uso académico y
+de investigación, en las mismas condiciones que el conjunto de datos.
+
+## Instalación manual
+
+Para otros sistemas operativos o para entrenar:
 
 ```bash
 python -m venv .venv
@@ -68,7 +82,8 @@ pip install -r requirements.txt
 ```
 
 PyTorch se instala aparte, con la versión que corresponda al equipo
-(<https://pytorch.org/get-started/locally/>).
+(<https://pytorch.org/get-started/locally/>). Los modelos se descargan de
+[Releases](https://github.com/JunBa03/Tesis/releases) y se copian en `models/`.
 
 ## Uso
 

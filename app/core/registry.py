@@ -1,9 +1,9 @@
-"""Catálogo de las seis configuraciones del experimento y descubrimiento de modelos.
+"""Catálogo de las siete configuraciones del experimento y descubrimiento de modelos.
 
 Es la única fuente de verdad sobre qué es cada configuración: qué eje del diseño de
 ablación modifica, qué variante usa y cuánto rindió. Las pantallas leen de acá en
-lugar de repetir esa información, así que agregar una configuración nueva (una E7)
-es sumar una entrada a este diccionario y nada más.
+lugar de repetir esa información, así que agregar una configuración nueva
+es sumar una entrada a este diccionario.
 """
 from __future__ import annotations
 
@@ -84,7 +84,7 @@ def es(observacion: str) -> str:
 
 
 def id_de_ruta(ruta: Path) -> Optional[str]:
-    """Extrae el identificador de configuración (E1..E6) del nombre del archivo.
+    """Extrae el identificador de configuración (E1..E7) del nombre del archivo.
 
     Los checkpoints se llaman ``E2_uones.pt`` o
     ``E1_baseline_densenet121_uzeros_bce.pt``; en ambos casos el prefijo antes del
@@ -106,7 +106,7 @@ def descubrir(raiz: str | Path = ".") -> dict[str, Path]:
         eid = id_de_ruta(ruta)
         if eid and eid not in encontrados:
             encontrados[eid] = ruta
-    # Orden estable E1..E6.
+    # Orden estable E1..E7.
     return {k: encontrados[k] for k in CATALOGO if k in encontrados}
 
 
