@@ -1,0 +1,7 @@
+# E4 - Varia UNICAMENTE la funcion de perdida respecto a E1.
+extends: base.yaml
+experiment:
+  name: E4_weighted_bce
+  notes: "E1 con BCE ponderada por frecuencia de clase (pos_weight = N_neg / N_pos)."
+loss:
+  name: weighted_bce

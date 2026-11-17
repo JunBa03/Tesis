@@ -1,0 +1,11 @@
+{
+  "temperatura": 0.7463,
+  "ece_sin_calibrar": 0.0496,
+  "ece_calibrado": 0.0808,
+  "auc_oficial": 0.8905,
+  "aurc_margen": 0.0892,
+  "aurc_ensemble": 0.0903,
+  "riesgo_cobertura_100": 0.2158,
+  "riesgo_cobertura_80": 0.1448,
+  "riesgo_cobertura_50": 0.0673
+}

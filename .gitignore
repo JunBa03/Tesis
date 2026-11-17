@@ -1,0 +1,48 @@
+# Entorno
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vscode/
+.idea/
+
+# Secretos
+.streamlit/secrets.toml
+
+# Datos (CheXpert, acuerdo de uso de Stanford). La barra inicial evita ignorar src/data/.
+/data/
+/data_synthetic/
+demo_samples/
+
+# Pesos y checkpoints (la barra inicial evita ignorar src/models/)
+*.pt
+*.pth
+/models/
+/checkpoints*/
+results_backup/
+
+# Registro de correcciones generado en tiempo de ejecución
+correcciones/
+
+# Resultados: se versionan solo los archivos livianos que usa la aplicación
+results/*
+!results/ensemble_config.json
+!results/calibracion.json
+!results/comparison/
+results/comparison/*
+!results/comparison/summary.json
+!results/figuras/
+results/figuras/*
+!results/figuras/*.png
+results_smoke/
+results_calib/
+
+# Comprimidos
+*.rar
+*.zip
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

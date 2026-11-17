@@ -1,0 +1,28 @@
+# E7 - Modelo APLICADO (no forma parte del estudio de ablación controlada).
+#
+# Combina las mejores decisiones que arrojó la ablación ---ResNet-50 (mejor arquitectura)
+# y U-Ones (mejor manejo de incertidumbre)--- y sube la resolución a 320px, que es la que
+# realmente traen las imágenes de CheXpert-small (lado corto 320). Suma una receta de
+# entrenamiento un poco más fuerte: AdamW, recocido de coseno y más épocas.
+#
+# El objetivo es un único modelo lo más preciso posible para la demostración. El estudio
+# de ablación (E1-E6) se mantiene intacto a 224px porque su valor es la comparación
+# controlada, no el máximo rendimiento.
+extends: base.yaml
+experiment:
+  name: E7_combinado
+  notes: "Aplicado: ResNet-50 + U-Ones a 320px, AdamW + cosine. Fuera de la ablación."
+data:
+  image_size: 320
+model:
+  backbone: resnet50
+labels:
+  uncertainty_policy: u_ones
+train:
+  epochs: 16
+  batch_size: 32          # 320px ocupa ~2x de memoria; 32 entra en 8 GB con AMP
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  optimizer: adamw
+  scheduler: cosine
+  early_stopping_patience: 4

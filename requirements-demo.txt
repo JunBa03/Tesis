@@ -1,0 +1,22 @@
+# Dependencias mínimas para usar solo la aplicación.
+#
+# torch y torchvision se instalan aparte. Sin placa NVIDIA alcanza la versión para CPU:
+#
+#     pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#
+# Con placa NVIDIA, usar el índice cu124.
+
+numpy>=1.24
+pandas>=2.0
+Pillow>=10.0
+PyYAML>=6.0
+streamlit>=1.30
+
+# Opcional: segmentación de campos pulmonares para acotar el mapa de calor a los
+# pulmones (elimina focos en hombros/marcadores) e indicar la zona anatómica.
+# Si no se instala, el mapa se limita al cuerpo y la demo funciona igual.
+torchxrayvision>=1.2
+
+# Opcional: lectura de archivos DICOM (.dcm), el formato clínico real. Sin esto, la demo
+# acepta JPG/PNG igual.
+pydicom>=2.4

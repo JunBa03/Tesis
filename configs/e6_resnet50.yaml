@@ -1,0 +1,7 @@
+# E6 - Varia UNICAMENTE la arquitectura respecto a E1.
+extends: base.yaml
+experiment:
+  name: E6_resnet50
+  notes: "E1 con ResNet-50 (ImageNet) en lugar de DenseNet-121."
+model:
+  backbone: resnet50

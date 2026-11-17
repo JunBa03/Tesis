@@ -1,0 +1,92 @@
+# Configuracion base compartida por todos los experimentos.
+# Cada configuracion E1-E6 hereda de este archivo y modifica UNA sola variable.
+
+experiment:
+  name: base
+  seed: 42
+  notes: ""
+
+data:
+  # Carpeta que CONTIENE a CheXpert-v1.0-small/ (no la carpeta del dataset en si:
+  # las rutas de los CSV ya vienen con el prefijo 'CheXpert-v1.0-small/...').
+  # Si se apunta por error a la carpeta del dataset, resolve_dataset_root lo corrige.
+  # Verificado sobre el dataset local: 223.414 filas, 191.027 frontales, 64.534 pacientes.
+  root: "../data/raw"           # carpeta que contiene CheXpert-v1.0-small/
+  train_csv: "CheXpert-v1.0-small/train.csv"
+  valid_csv: "CheXpert-v1.0-small/valid.csv"
+  # Solo proyecciones frontales (PA/AP). Las laterales son secundarias en el benchmark.
+  frontal_only: true
+  # Fraccion de PACIENTES reservada para validacion interna (seleccion de modelo / early stopping).
+  # El valid.csv oficial (234 imagenes, consenso de 3 radiologos) queda intacto como conjunto de test.
+  internal_val_fraction: 0.05
+  image_size: 224
+  # Ryzen 5 5600: 6 núcleos físicos. En Windows cada worker es un proceso nuevo
+  # que reimporta torch y ocupa varios cientos de MB de RAM, así que subir este
+  # número no sale gratis: con 10 workers el sistema se quedaba sin memoria
+  # (el síntoma era un error de OpenBLAS al asignar memoria durante la validación).
+  # 6 alimenta de sobra a una 3060 Ti con imágenes JPEG chicas.
+  num_workers: 6
+  # La validación corre una vez por época sobre 9.736 imágenes: no necesita más.
+  # Se mantiene bajo para que no se sume a los workers de entrenamiento.
+  eval_num_workers: 2
+  pin_memory: true
+  # Batches en cola por worker. 6 x 2 x 64 imágenes ya son unos 460 MB en vuelo.
+  prefetch_factor: 2
+
+labels:
+  # Politica para etiquetas inciertas (-1.0): u_zeros | u_ones | u_ignore
+  uncertainty_policy: u_zeros
+  # Modo de u_ignore: "row" descarta la fila completa (protocolo Irvin et al.);
+  # "mask" enmascara la etiqueta incierta en la perdida y conserva el resto de la fila.
+  u_ignore_mode: row
+  # Las celdas vacias del CSV (no mencionado) se tratan como negativas.
+  blank_as_negative: true
+
+model:
+  backbone: densenet121        # densenet121 | resnet50
+  pretrained: true             # pesos ImageNet
+  dropout: 0.2
+
+loss:
+  name: bce                    # bce | weighted_bce | focal
+  # weighted_bce
+  pos_weight_clip: 10.0
+  # focal
+  focal_gamma: 2.0
+  focal_alpha: 0.25
+
+train:
+  epochs: 8
+  # 64 entra holgado en los 8 GB de la 3060 Ti con AMP (DenseNet-121 a 224x224 usa
+  # ~5 GB) y aprovecha mejor los tensor cores que un batch de 32. Si aparece
+  # CUDA out of memory, bajar a 48 o 32 antes de tocar cualquier otra cosa.
+  batch_size: 64
+  lr: 1.0e-4
+  weight_decay: 1.0e-5
+  optimizer: adam
+  scheduler: plateau           # plateau | none
+  scheduler_patience: 1
+  scheduler_factor: 0.5
+  early_stopping_patience: 3
+  amp: true                    # mixed precision
+  # cudnn.benchmark elige el algoritmo de convolución más rápido para el tamaño de
+  # entrada, que acá es fijo. Da entre 10 y 20 % de mejora y a cambio el resultado
+  # deja de ser bit a bit reproducible. Las semillas siguen fijas y todas las
+  # configuraciones usan el mismo valor, así que la comparación E1-E6 no se ve
+  # afectada. Poner en true si se necesita reproducibilidad exacta.
+  deterministic: false
+  # Formato de memoria NHWC. En teoría mejora el uso de tensor cores con AMP.
+  # MEDIDO EN ESTE EQUIPO (scripts/bench_gpu.py, RTX 3060 Ti, 19/7):
+  #     DenseNet-121  contiguous 339 img/s   channels_last  31 img/s
+  #     ResNet-50     contiguous 425 img/s   channels_last  44 img/s
+  # Es ~10x MÁS LENTO en las dos arquitecturas. Esta build de torch no tiene
+  # kernels NHWC eficientes para esta placa y cae en un camino lento.
+  # No activar sin volver a medir con bench_gpu.py.
+  channels_last: false
+  grad_clip: 5.0
+  max_train_batches: null      # limitar batches por epoca (debug)
+  max_eval_batches: null
+
+output:
+  checkpoint_dir: "./checkpoints"
+  results_dir: "./results"

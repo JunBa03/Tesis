@@ -1,0 +1,7 @@
+# E2 - Varia UNICAMENTE la estrategia de incertidumbre respecto a E1.
+extends: base.yaml
+experiment:
+  name: E2_uones
+  notes: "E1 con U-Ones: las etiquetas inciertas (-1) se tratan como positivas."
+labels:
+  uncertainty_policy: u_ones

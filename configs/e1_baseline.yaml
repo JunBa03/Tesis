@@ -1,0 +1,5 @@
+# E1 - BASELINE. Todas las demas configuraciones se comparan contra esta.
+extends: base.yaml
+experiment:
+  name: E1_baseline_densenet121_uzeros_bce
+  notes: "Baseline: DenseNet-121 (ImageNet) + U-Zeros + BCE estandar."

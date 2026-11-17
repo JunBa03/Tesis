@@ -1,0 +1,12 @@
+# Tema de la demostración. Modo oscuro sobrio, fijo para que se vea igual en cualquier
+# máquina, sin depender del tema global del usuario.
+[theme]
+base = "dark"
+primaryColor = "#3b82f6"
+backgroundColor = "#0f1216"
+secondaryBackgroundColor = "#181c23"
+textColor = "#e6e8ec"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"

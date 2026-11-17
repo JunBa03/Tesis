@@ -1,0 +1,7 @@
+# E5 - Varia UNICAMENTE la funcion de perdida respecto a E1.
+extends: base.yaml
+experiment:
+  name: E5_focal
+  notes: "E1 con focal loss (Lin et al., 2017), gamma=2.0, alpha=0.25."
+loss:
+  name: focal

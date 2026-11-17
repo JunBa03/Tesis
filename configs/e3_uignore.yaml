@@ -1,0 +1,8 @@
+# E3 - Varia UNICAMENTE la estrategia de incertidumbre respecto a E1.
+extends: base.yaml
+experiment:
+  name: E3_uignore
+  notes: "E1 con U-Ignore: se descartan las filas con -1 en alguna de las 5 patologias del benchmark."
+labels:
+  uncertainty_policy: u_ignore
+  u_ignore_mode: row
