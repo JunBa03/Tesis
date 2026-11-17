@@ -12,7 +12,6 @@ __pycache__/
 
 # Datos (CheXpert, acuerdo de uso de Stanford). La barra inicial evita ignorar src/data/.
 /data/
-/data_synthetic/
 demo_samples/
 
 # Pesos y checkpoints (la barra inicial evita ignorar src/models/)

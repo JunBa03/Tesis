@@ -75,13 +75,8 @@ train:
   # configuraciones usan el mismo valor, así que la comparación E1-E6 no se ve
   # afectada. Poner en true si se necesita reproducibilidad exacta.
   deterministic: false
-  # Formato de memoria NHWC. En teoría mejora el uso de tensor cores con AMP.
-  # MEDIDO EN ESTE EQUIPO (scripts/bench_gpu.py, RTX 3060 Ti, 19/7):
-  #     DenseNet-121  contiguous 339 img/s   channels_last  31 img/s
-  #     ResNet-50     contiguous 425 img/s   channels_last  44 img/s
-  # Es ~10x MÁS LENTO en las dos arquitecturas. Esta build de torch no tiene
-  # kernels NHWC eficientes para esta placa y cae en un camino lento.
-  # No activar sin volver a medir con bench_gpu.py.
+  # Formato de memoria NHWC. Medido en una RTX 3060 Ti, resultó unas diez veces más
+  # lento que el formato contiguo en DenseNet-121 y ResNet-50, por eso queda desactivado.
   channels_last: false
   grad_clip: 5.0
   max_train_batches: null      # limitar batches por epoca (debug)

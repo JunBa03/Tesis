@@ -6,8 +6,6 @@
 #
 # La versión de CUDA que corresponde a tu driver está en:
 #     https://pytorch.org/get-started/locally/
-#
-# Verificá que quedó bien con:  python scripts/check_env.py
 
 numpy>=1.24
 pandas>=2.0
