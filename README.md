@@ -53,6 +53,10 @@ se cambia en `data.root` de `configs/base.yaml`.
 
 ## Prueba rápida (Windows)
 
+Los scripts `instalar.bat` e `iniciar.bat` se incluyen para facilitar la preparación del
+programa en cualquier computadora con Windows, sin configuración manual: dejan listo el
+entorno, las dependencias y los modelos, y abren la aplicación.
+
 1. Descargar el repositorio (**Code → Download ZIP**) y descomprimirlo.
 2. Ejecutar `instalar.bat` una sola vez. Crea el entorno, instala las dependencias y
    descarga los siete modelos entrenados (unos 160 MB) desde la sección
