@@ -98,7 +98,7 @@ class Clasificador:
         if not self.ruta.exists():
             raise FileNotFoundError(
                 f"No existe el checkpoint {self.ruta}.\n"
-                "Hay que entrenar al menos una configuración: 2_entrenar_todo.bat"
+                "Hay que entrenar al menos una configuración con scripts/train.py."
             )
 
         self.device = torch.device(

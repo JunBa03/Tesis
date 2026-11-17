@@ -49,7 +49,7 @@ def diagnostico_ruta(root: Path) -> None:
         sospechas.append(
             "La ruta contiene 'OneDrive'. Si los archivos están en modo\n"
             "               'Archivos a petición', cada lectura puede bajar el archivo\n"
-            "               de la nube. Es la causa más cara posible."
+            "               de la nube, lo que vuelve muy lenta la carga."
         )
     if "\\Desktop\\" in ruta or "/Desktop/" in ruta:
         sospechas.append(

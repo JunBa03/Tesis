@@ -88,7 +88,7 @@ def main() -> None:
 
     if not disponibles:
         print(f"No hay checkpoints en {args.checkpoints}/")
-        print("Hay que entrenar al menos una configuración: 2_entrenar_todo.bat")
+        print("Hay que entrenar al menos una configuración con scripts/train.py.")
         sys.exit(1)
 
     destino_dir = Path(args.destino)

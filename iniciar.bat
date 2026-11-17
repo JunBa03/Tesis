@@ -2,13 +2,14 @@
 setlocal
 cd /d "%~dp0"
 title RXTorax
+
 if not exist ".venv\Scripts\activate.bat" (
-  echo  Falta la puesta en marcha. Corre primero instalar_demo.bat
+  echo Falta la instalacion. Ejecutar primero instalar.bat.
   pause
   exit /b 1
 )
 call .venv\Scripts\activate.bat
-echo  Abriendo la demostracion. Para cerrarla: Ctrl+C en esta ventana.
-echo.
+
+echo Abriendo RXTorax en el navegador. Para cerrarla, Ctrl+C en esta ventana.
 streamlit run app\Inicio.py
 pause

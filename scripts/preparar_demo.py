@@ -51,8 +51,8 @@ def elegir_muestras(df: pd.DataFrame, n: int, dificiles: bool = False) -> pd.Dat
 
     Con ``dificiles=True`` sesga la selección hacia los casos donde el modelo tiene
     más chances de equivocarse: positivos en las patologías de menor AUC
-    (atelectasia y consolidación) y estudios con muchos hallazgos simultáneos. Sirve
-    para mostrar honestamente los límites del sistema, no solo sus aciertos.
+    (atelectasia y consolidación) y estudios con muchos hallazgos simultáneos. Permite
+    mostrar también los casos en los que el sistema falla.
     """
     positivos = df[COMPETITION_TASKS].sum(axis=1)
     if dificiles:

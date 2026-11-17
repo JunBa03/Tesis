@@ -126,7 +126,7 @@ if not checkpoints:
     st.title("Análisis automatizado de radiografías de tórax")
     st.error(
         "No hay ningún modelo disponible.\n\n"
-        "Entrenar con `2_entrenar_todo.bat` o copiar los modelos exportados "
+        "Entrenar con `scripts/train.py` o copiar los modelos exportados "
         "en `models/`."
     )
     st.stop()

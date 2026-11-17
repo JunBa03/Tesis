@@ -52,6 +52,12 @@ Los modelos entrenados (`models/*.pt`) tampoco se versionan por su tamaño.
 
 ## Instalación
 
+En Windows, `instalar.bat` crea el entorno virtual e instala las dependencias para usar
+la aplicación (PyTorch para CPU), e `iniciar.bat` la abre en el navegador. Los modelos
+entrenados se copian en `models/`.
+
+Instalación manual, también para entrenar:
+
 ```bash
 python -m venv .venv
 .venv\Scripts\activate            # Linux/macOS: source .venv/bin/activate
@@ -59,9 +65,7 @@ pip install -r requirements.txt
 ```
 
 PyTorch se instala aparte, con la versión que corresponda al equipo
-(<https://pytorch.org/get-started/locally/>). En Windows, `0_instalar_cuda.bat` instala la
-versión con CUDA y `instalar_demo.bat` prepara un equipo solo para la aplicación, con
-PyTorch para CPU.
+(<https://pytorch.org/get-started/locally/>).
 
 ## Uso
 
@@ -78,10 +82,6 @@ python scripts/predict_image.py --imagen ruta/a/radiografia.jpg
 # pruebas
 python -m pytest -q
 ```
-
-Los archivos `.bat` numerados recorren el flujo completo en Windows: verificación del
-entorno, entrenamiento de E1 a E6, evaluación del ensamblado, entrenamiento de E7,
-calibración, análisis estadístico y pruebas.
 
 Para el asistente conversacional, copiar `.streamlit/secrets.toml.example` como
 `.streamlit/secrets.toml` y completar la clave.

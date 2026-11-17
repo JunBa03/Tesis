@@ -141,8 +141,8 @@ def build_dataloaders(cfg, datasets: dict) -> dict:
     proceso nuevo que reimporta torch y ocupa varios cientos de MB. Con
     persistent_workers en los tres loaders, durante la validación conviven los
     workers de entrenamiento y los de validación, y la suma agota la RAM del
-    sistema — el síntoma es un error de OpenBLAS al asignar memoria, que despista
-    porque parece un problema de álgebra lineal y no de procesos.
+    sistema. El síntoma es un error de OpenBLAS al asignar memoria, aunque la causa
+    es la cantidad de procesos.
     """
     bs = cfg["train"]["batch_size"]
     nw = int(cfg["data"]["num_workers"])

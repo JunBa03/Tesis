@@ -2,8 +2,8 @@
 
 En vez de un punto de píxeles, ubica la atención dentro de una grilla de campos pulmonares
  (superior, medio, inferior por cada hemitórax) y devuelve el nombre de la zona
-dominante. Es una representación honesta con la granularidad real del método: el mapa no
-localiza al milímetro, pero sí puede decir en qué zona se concentra la atención.
+dominante. Esa granularidad es la que el método permite: el mapa no localiza con
+precisión, pero sí indica en qué zona se concentra la atención.
 
 Convención radiológica: en la imagen, el lado izquierdo corresponde al hemitórax DERECHO del
 paciente (las radiografías se leen como si se mirara al paciente de frente).
