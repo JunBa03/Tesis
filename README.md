@@ -8,6 +8,9 @@ avisa cuándo su propia lectura no es confiable. No emite diagnósticos.
 Proyecto Final de Ingeniería en Informática, UADE (2026).
 Autor: Juan Bautista Felizia. Tutor: Damián Andrés Del Campo.
 
+> Este repositorio se armó para la entrega final, con una versión más limpia y ordenada
+> del código desarrollado durante el proyecto.
+
 ## Funciones
 
 - **Análisis de un estudio:** lectura de conjunto con la probabilidad de cada hallazgo,
