@@ -83,7 +83,8 @@ pip install -r requirements.txt
 
 PyTorch se instala aparte, con la versión que corresponda al equipo
 (<https://pytorch.org/get-started/locally/>). Los modelos se descargan de
-[Releases](https://github.com/JunBa03/Tesis/releases) y se copian en `models/`.
+[Releases](https://github.com/JunBa03/Tesis/releases) (`modelos.zip`) y se descomprimen
+en `models/`.
 
 ## Uso
 
