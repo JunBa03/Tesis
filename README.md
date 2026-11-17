@@ -67,10 +67,16 @@ entorno, las dependencias y los modelos, y abren la aplicación.
 Requiere Python 3.10 o superior y conexión a internet durante la instalación. No necesita
 placa de video; en una computadora sin GPU el análisis de un estudio tarda unos segundos.
 
-Las imágenes de CheXpert no se incluyen porque su acuerdo de uso no permite
-redistribuirlas, pero no hacen falta: sirve cualquier radiografía de tórax frontal. El
-asistente conversacional es opcional y requiere una clave propia (ver más abajo); sin ella
-la aplicación funciona igual.
+**Qué funciona con esta instalación.** Todo el programa: análisis, priorización,
+comparación por modelo, mapa de atención, informe y registro de correcciones. La única
+función que no queda activa es el **asistente conversacional (chat)**, porque usa una API
+externa que requiere una clave personal; para habilitarlo, ver la sección *Uso*. Sin la
+clave, el resto de la aplicación funciona igual.
+
+Las radiografías de ejemplo de CheXpert tampoco se incluyen, porque su acuerdo de uso no
+permite redistribuirlas. Por eso no aparece la opción de ejemplos oficiales con etiquetas de
+radiólogos: los estudios se cargan desde la computadora, y sirve cualquier radiografía de
+tórax frontal.
 
 Los modelos publicados se entrenaron con CheXpert y se ofrecen solo para uso académico y
 de investigación, en las mismas condiciones que el conjunto de datos.
